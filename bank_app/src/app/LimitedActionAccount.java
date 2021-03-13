@@ -31,7 +31,7 @@ public class LimitedActionAccount extends Account {
     }
     @Override
     public boolean deposit(double amount){
-        if(limit>amount){
+        if(amount>limit){
             double  balance = getBalance();
             balance += amount;
             setBalance(balance);

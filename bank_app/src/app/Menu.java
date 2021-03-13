@@ -20,9 +20,9 @@ public class Menu {
             System.out.println(" ");
             System.out.println("1: Create Account");
             System.out.println("2: Show Account");
-            System.out.println("4: Deposit");
-            System.out.println("5: Withdraw");
-            System.out.println("6: exit");
+            System.out.println("3: Deposit");
+            System.out.println("4: Withdraw");
+            System.out.println("5: exit");
             System.out.println(" ");
             System.out.print("Select choice: ");
             Scanner sc = new Scanner(System.in);
@@ -36,6 +36,12 @@ public class Menu {
                     showAllAccount();
                     break;
                 case 3:
+                    deposit();
+                    break;
+                case 4:
+                    withDraw();
+                    break;
+                case 5:
                     continueLoop = false;
                     break;
             }
@@ -101,12 +107,44 @@ public class Menu {
         }else if (account instanceof OverdraftAccount){
             System.out.println("Account Type: Overdraft Account");
         }
+
     }
 
 
 
     public void deposit(){
+        for (int i = 0; i < bank.getAccountCount(); i++) {
+            System.out.println(i+": "+
+                    bank.getAccount(i).getPerson().getFirstName() + " " +
+                    bank.getAccount(i).getPerson().getLastName());
+        }
+        System.out.println(" ");
+        System.out.print("Select Account by number: ");
+        int choice = sc.nextInt();
+        System.out.print("Enter amount: ");
+        int amount = sc.nextInt();
+        bank.getAccount(choice).deposit(amount);
+        System.out.println("Success");
+        System.out.print("New Balances: ");
+        System.out.print(bank.getAccount(choice).getBalance());
+    }
 
+
+    public void withDraw(){
+        for (int i = 0; i < bank.getAccountCount(); i++) {
+            System.out.println(i+": "+
+                    bank.getAccount(i).getPerson().getFirstName() + " " +
+                    bank.getAccount(i).getPerson().getLastName());
+        }
+        System.out.println(" ");
+        System.out.print("Select Account by number: ");
+        int choice = sc.nextInt();
+        System.out.print("Enter amount: ");
+        int amount = sc.nextInt();
+        bank.getAccount(choice).withdraw(amount);
+        System.out.println("Success");
+        System.out.print("New Balances: ");
+        System.out.print(bank.getAccount(choice).getBalance());
     }
 
 }

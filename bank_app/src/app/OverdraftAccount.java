@@ -30,9 +30,9 @@ public class OverdraftAccount extends Account{
 
     @Override
     public boolean deposit(double amount){
-        if(getBalance() > overdraft ){
+        if(amount > overdraft ){
             double balance = getBalance();
-            balance += overdraft;
+            balance += amount;
             setBalance(balance);
             return true;
         }
